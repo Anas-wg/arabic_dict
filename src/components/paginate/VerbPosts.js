@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Pagination from "./Pagination";
+import axios from "axios"
 
-function Posts() {
+function VerbPosts({ category }) {
   const [posts, setPosts] = useState([]);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(5);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   const [isShow, setIsShow] = useState(false)
@@ -14,20 +15,30 @@ function Posts() {
   }
 
   useEffect(() => {
-    fetch("https://gist.githubusercontent.com/Anas-wg/47b4ad03b99068bf063fbbc618c3ed1a/raw/4b8d0a9ddeb53d437d818d158c0e85fb002ee110/WordItems.json")
-      .then((res) => res.json())
-      .then((data) => setPosts(data));
-  }, []);
+    // async를 사용하는 함수 따로 선언
+    const fetchData = async () => {
+      try {
+        // 카테고리 적용
+        const response = await axios.get(
+          `https://gist.githubusercontent.com/Anas-wg/ef7fb2b2743b9a3d560e477cbd468b82/raw/78156faa548685d0f336a6d3ac7a8e7eaadc71ed/Verb.json`,
+        );
+          setPosts(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  }, [category]);
 
 
 
   return (
     <Layout>
       <Main>
-        {posts.slice(offset, offset + limit).map(({ id, single,plural, mean, example, exmean, part }) => (
+        {posts.slice(offset, offset + limit).map(({ id, single,plural, mean, example, exmean }) => (
           <Article key={id}>
             <h3>
-              {single}-{plural}
+              {single} : {plural}
             </h3>
             <p>{mean}</p>
             <p>{isShow && example}</p>
@@ -74,11 +85,11 @@ const Main =styled.main`
 `
 
 const Article = styled.div`
-  font-family: 'IBM Plex Sans';
   width: 350px;
+  heigth: 120px;
   background : #FAFAFA;
   border-radius: 10px;
-
+  padding-left: 10px;
 `
 
 const Button = styled.button`
@@ -86,4 +97,4 @@ const Button = styled.button`
   background: #FAFAFA;
 `
 
-export default Posts;
+export default VerbPosts;
