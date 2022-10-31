@@ -14,7 +14,8 @@
     "react-js-pagination": "^3.0.3",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "homepage": "https://Anas-wg.github.io/mydict"
   },
   "scripts": {
     "start": "react-scripts start",
