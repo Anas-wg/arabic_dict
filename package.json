@@ -15,7 +15,8 @@
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
-    "homepage": "https://Anas-wg.github.io/mydict"
+    "homepage": "http://Anas-wg.github.io/mydict"
+
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
