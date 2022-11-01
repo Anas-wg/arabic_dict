@@ -54,6 +54,9 @@ const TabTitle = styled.div`
 	&:hover{
 		color: red;
 	}
+	&:active{
+		color: red;
+	}
 `;
 
 const TabCont = styled.div``;
